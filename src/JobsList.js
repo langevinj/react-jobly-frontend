@@ -3,39 +3,25 @@ import JoblyApi from './JoblyApi'
 import Search from './Search'
 import CardList from './CardList'
 import { paginateData } from './helpers'
+import './JobList.css'
+import PageButtons from './PageButtons'
 
 function JobsList({toggleJob, jobAdded}) {
     const [jobs, setJobs] = useState([])
-    const [jobPages, setJobPages] = useState([])
-    
-    // function pageList(allJobs){
-    //     let count = 0;
-    //     let perPage = 20;
-    //     const pages = [];
-    //     while(count < allJobs.length){
-    //         let tempArray = []
-    //         for(let i=0; i < perPage; i++){
-    //             tempArray.push(allJobs[count]);
-    //             count++
-    //         }
-    //         pages.push(tempArray)
-    //         tempArray = []
-    //     }
-    //     return pages
-    // }
+    const [pageNum, setPageNum] = useState(0)
+    const [currPage, setCurrPage] = useState([])
+    const [pages, setPages] = useState([])
+
     //set the list of jobs upon rendering
     useEffect(() => {
         async function gatherJobs() {
             let res = await JoblyApi.getJobs();
             setJobs(res);
-            let pages = paginateData(res);
-            console.log(pages)
+            setPages(pages => (paginateData(res)))
         }
         gatherJobs()
     }, []);
 
-    // const user = JSON.parse(localStorage.getItem("user"))
-    // console.log(`User jobs from jobslist is: ${JSON.stringify(user.user.applications)}`)
 
     //filter jobs if search bar is used
     const filterJobs = async (searchTerm) => {
@@ -49,11 +35,24 @@ function JobsList({toggleJob, jobAdded}) {
         setJobs(res)
     }
 
+    const prevPage = () => {
+        setPageNum(pageNum => pageNum - 1)
+    }
+
+    const nextPage = () => {
+        setPageNum(pageNum => pageNum + 1)
+    }
+
+    const list = <div className="JobsList">
+        <Search filter={filterJobs} />
+        <CardList title='jobs' items={pages} toggleJob={toggleJob} pageNum={pageNum} prevPage={prevPage} nextPage={nextPage}/>
+        <PageButtons prevPage={prevPage} nextPage={nextPage} numPages={pages.length} pageNum={pageNum}/>
+    </div>
+
     return (
-        <div className="JobsList">
-            <Search filter={filterJobs}/>
-            <CardList title='jobs' items={jobs} toggleJob={toggleJob}/>
-        </div> 
+        <>
+        {!pages[0] ? null : list}
+        </>
     )
 }
 

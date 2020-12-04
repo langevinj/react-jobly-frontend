@@ -1,0 +1,7 @@
+.buttons{
+    margin-bottom: 1rem;
+}
+
+.buttons > button {
+    margin: 1rem;
+}
