@@ -1,10 +1,10 @@
 import React from 'react'
 
-function renderJobButton(applications, jobId, handleClick){
+function renderJobButton(applications, jobId, applyForJob, unApply){
     if (applications.includes(jobId)) {
-        return <button type="button" data-toggle="button" className="Apply" disabled={true} aria-disabled="true">Applied</button>
+        return <button type="button" data-toggle="button" className="Apply btn-secondary rounded" onClick={unApply}>Applied</button>
     } else {
-        return <button type="button" data-toggle="button" className="Apply" onClick={handleClick}>Apply</button>
+        return <button type="button" data-toggle="button" className="Apply btn-primary rounded" onClick={applyForJob}>Apply</button>
     }
 }
 
