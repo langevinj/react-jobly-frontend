@@ -27,7 +27,6 @@ function JobsList({toggleJob, jobAdded}) {
         paginatePages()
     }, [jobs])
 
-
     //filter jobs if search bar is used
     const filterJobs = async (searchTerm) => {
         let res;
@@ -40,16 +39,17 @@ function JobsList({toggleJob, jobAdded}) {
         setJobs(res)
     }
 
-    const list = <div className="JobsList">
-        <Search filter={filterJobs} />
+    const list = 
+    <>
         <CardList title='jobs' items={pages} toggleJob={toggleJob} pageNum={pageNum} />
         <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum}/>
-    </div>
+    </>
 
     return (
-        <>
-            {!pages[0] ? null : list}
-        </>
+        <div className="JobsList">
+            <Search filter={filterJobs} />
+            {!pages[0] ? <div className="mt-3"><p>....no results right now</p></div> : list}
+        </div>
     )
 }
 

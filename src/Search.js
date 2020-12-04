@@ -1,5 +1,5 @@
 import React, { useState }  from 'react'
-import JoblyApi from './JoblyApi'
+import { debounce } from 'lodash'
 
 function Search({ filter }){
     const [searchTerm, setSearchTerm] = useState({term: ""})
@@ -10,6 +10,7 @@ function Search({ filter }){
             ...oldTerm,
             [name]: value
         }));
+        debounceSearch()
     }
 
     const handleSubmit = (evt) => {
@@ -17,6 +18,10 @@ function Search({ filter }){
         filter(searchTerm.term)
         setSearchTerm({term: ""})
     }
+
+    const debounceSearch = debounce(() => filter(searchTerm.term), 1000);
+
+    
 
     return (
          <form className="Search-bar" onSubmit={handleSubmit}>
