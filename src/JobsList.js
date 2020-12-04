@@ -2,19 +2,34 @@ import React, { useState, useEffect } from 'react'
 import JoblyApi from './JoblyApi'
 import Search from './Search'
 import CardList from './CardList'
-import { useLocalStorage } from './hooks'
+import { paginateData } from './helpers'
 
 function JobsList({toggleJob, jobAdded}) {
     const [jobs, setJobs] = useState([])
-    // const [userJobs, setUserJobs] = useLocalStorage("jobs")
-    // const [user, setUser] = useLocalStorage("user")
+    const [jobPages, setJobPages] = useState([])
     
-
+    // function pageList(allJobs){
+    //     let count = 0;
+    //     let perPage = 20;
+    //     const pages = [];
+    //     while(count < allJobs.length){
+    //         let tempArray = []
+    //         for(let i=0; i < perPage; i++){
+    //             tempArray.push(allJobs[count]);
+    //             count++
+    //         }
+    //         pages.push(tempArray)
+    //         tempArray = []
+    //     }
+    //     return pages
+    // }
     //set the list of jobs upon rendering
     useEffect(() => {
         async function gatherJobs() {
             let res = await JoblyApi.getJobs();
             setJobs(res);
+            let pages = paginateData(res);
+            console.log(pages)
         }
         gatherJobs()
     }, []);
