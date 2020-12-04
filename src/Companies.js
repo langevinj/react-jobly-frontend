@@ -14,10 +14,16 @@ function Companies(){
         async function gatherCompanies(){
             let res = await JoblyApi.getCompanies();
             setCompanies(res);
-            setPages(pages => (paginateData(res)))
         }
         gatherCompanies()
     }, [])
+
+    useEffect(() => {
+        function paginatePages() {
+            setPages(pages => (paginateData(companies)))
+        }
+        paginatePages()
+    }, [companies])
 
     const filterCompanies =  async (searchTerm) => {
         let res;
