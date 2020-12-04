@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import JoblyApi from './JoblyApi'
 import CardList from './CardList'
 import './Company.css'
+import { paginateData } from './helpers'
+import PageButtons from './PageButtons'
 
 function Company() {
     const [company, setCompany] = useState({
@@ -14,6 +16,8 @@ function Company() {
         logoUrl: ""
     })
     const [currHandle, setHandle] = useState(null)
+    const [pageNum, setPageNum] = useState(0)
+    const [pages, setPages] = useState([])
     
     //grab the company handle from params
     const { handle } = useParams()
@@ -27,15 +31,19 @@ function Company() {
             if(!currHandle){
                 setHandle(res.handle)
             }
+            setPages(pages => (paginateData(company.jobs)))
         }
         loadCompany()
     }, [currHandle])
+
+    const list = <><CardList title='jobs' items={pages} pageNum={pageNum}/>
+            <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} /></>
 
     return (
         <div className="Company">
             <h3 className="company-name">{company.name}</h3>
             <h4>{company.description}</h4>
-            <CardList title='jobs' items={company.jobs} />
+            {!pages[0] ? null : list}
         </div>
     )
 }
