@@ -34,8 +34,6 @@ function JobsList({toggleJob, jobAdded}) {
         setJobs(res)
     }
 
-    
-
     const list = <div className="JobsList">
         <Search filter={filterJobs} />
         <CardList title='jobs' items={pages} toggleJob={toggleJob} pageNum={pageNum} />

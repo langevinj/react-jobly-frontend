@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react'
 import JoblyApi from './JoblyApi'
 import Search from './Search'
 import CardList from './CardList'
+import { paginateData } from './helpers'
+import PageButtons from './PageButtons'
 
 function Companies(){
     const [companies, setCompanies] = useState([])
+    const [pageNum, setPageNum] = useState(0)
+    const [pages, setPages] = useState([])
 
     useEffect(() => {
         async function gatherCompanies(){
             let res = await JoblyApi.getCompanies();
             setCompanies(res);
+            setPages(pages => (paginateData(res)))
         }
         gatherCompanies()
     }, [])
@@ -25,11 +30,16 @@ function Companies(){
         setCompanies(res)
     }
 
-    return(
-        <div className="CompaniesList">
-            <Search filter={filterCompanies}/>
-            <CardList title={'companies'} items={companies} />
-        </div>  
+    const list = <div className="CompaniesList">
+        <Search filter={filterCompanies} />
+        <CardList title={'companies'} items={pages} pageNum={pageNum} />
+        <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} />
+    </div>  
+
+    return (
+        <>
+            {!pages[0] ? null : list}
+        </>
     )
 }
 
