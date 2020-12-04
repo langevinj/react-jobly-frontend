@@ -9,17 +9,30 @@ import Profile from './Profile'
 import Logout from './Logout'
 
 function Routes({logOut, user, toggleJob, jobAdded, logIn}){
-    return (
+
+    const loggedOutRoutes = (
+        <Switch>
+            <Route exact path="/login"><Login logIn={logIn} /></Route>
+            <Route exact path="/"><Home user={user} /></Route>
+            <Redirect to="/"></Redirect>
+        </Switch>
+    )
+
+    const loggedInRoutes = (
         <Switch>
             <Route exact path="/companies"><Companies /></Route>
             <Route exact path="/companies/:handle"><Company /></Route>
-            <Route exact path="/jobs"><JobsList toggleJob={toggleJob} jobAdded={jobAdded}/></Route>
-            <Route exact path="/login"><Login logIn={logIn}/></Route>
+            <Route exact path="/jobs"><JobsList toggleJob={toggleJob} jobAdded={jobAdded} /></Route>
+            <Route exact path="/login"><Login logIn={logIn} /></Route>
             <Route exact path="/logout"><Logout logOut={logOut} /></Route>
             <Route exact path="/profile"><Profile /></Route>
-            <Route exact path="/"><Home user={user}/></Route>
+            <Route exact path="/"><Home user={user} /></Route>
             <Redirect to="/"></Redirect>
         </Switch>
+    )
+
+    return (
+        <>{!user ? loggedOutRoutes : loggedInRoutes}</> 
     )
 }
 
