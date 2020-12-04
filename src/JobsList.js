@@ -16,10 +16,16 @@ function JobsList({toggleJob, jobAdded}) {
         async function gatherJobs() {
             let res = await JoblyApi.getJobs();
             setJobs(res);
-            setPages(pages => (paginateData(res)))
         }
         gatherJobs()
     }, []);
+
+    useEffect(() => {
+        function paginatePages(){
+            setPages(pages => (paginateData(jobs)))
+        }
+        paginatePages()
+    }, [jobs])
 
 
     //filter jobs if search bar is used
