@@ -19,9 +19,8 @@ function Search({ filter }){
         setSearchTerm({term: ""})
     }
 
+    //search after 1sec of resting keyboard
     const debounceSearch = debounce(() => filter(searchTerm.term), 1000);
-
-    
 
     return (
          <form className="Search-bar" onSubmit={handleSubmit}>
