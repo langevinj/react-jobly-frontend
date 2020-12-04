@@ -22,12 +22,6 @@ function App() {
       if(user){
         let res = await JoblyApi.getUserInfo(user.user.username)
         setUser(res)
-        console.log(user.user)
-      }
-      if(!localStorage.getItem("user")){
-        console.log("resetting")
-        setUser(null)
-        setToken(null)
       }
     }
     loadUser()
