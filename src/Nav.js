@@ -1,24 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Nav.css'
 
 function Nav({user}){
+    const ACTIVE_STYLES = {
+        fontWeight: "bold",
+        color: 	"#0275d8",
+    };
+
     //navbar view if a user is logged in
     const loggedInView = (
         <nav className="navbar navbar-expand-lg bg-white">
-            <Link to="/" className="Navbar-link navbar-brand">Jobly</Link>
+            <NavLink exact to="/" className="Navbar-link navbar-brand">Jobly</NavLink>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
-                        <Link to="/companies" className="nav-link">Companies</Link>
+                        <NavLink exact to="/companies" className="nav-link" activeStyle={ ACTIVE_STYLES }>Companies</NavLink>
                     </li>
                     <li className="nav-item active">
-                        <Link to="/jobs" className="nav-link">Jobs</Link>
+                        <NavLink exact to="/jobs" className="nav-link" activeStyle={ACTIVE_STYLES}>Jobs</NavLink>
                     </li>
                     <li className="nav-item active">
-                        <Link to="/profile" className="nav-link">Profile</Link>
+                        <NavLink exact to="/profile" className="nav-link" activeStyle={ACTIVE_STYLES}>Profile</NavLink>
                     </li>
                     <li className="nav-item active">
-                        <Link to="/logout" className="nav-link">Logout</Link>
+                        <NavLink exact to="/logout" className="nav-link" activeStyle={ACTIVE_STYLES}>Logout</NavLink>
                     </li>
                 </ul>
         </nav>
@@ -27,10 +32,10 @@ function Nav({user}){
     //navbar view if a user is logged out
     const loggedOutView = (
         <nav className="navbar navbar-expand-lg bg-white">
-            <Link to="/" className="Navbar-link navbar-brand">Jobly</Link>
+            <NavLink exact to="/" className="Navbar-link navbar-brand">Jobly</NavLink>
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                    <Link to="/login" className="Navbar-link">Login</Link>
+                    <NavLink exact to="/login" className="Navbar-link" activeStyle={ACTIVE_STYLES}>Login</NavLink>
                 </li>
             </ul>
         </nav>
