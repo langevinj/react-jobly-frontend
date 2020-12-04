@@ -96,6 +96,12 @@ class JoblyApi {
         return res
     }
 
+    //unapply from a job given jobId and username
+    static async unapplyToJob(username, jobId){
+        let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "patch", true, true);
+        return res
+    }
+
     //given an object where keys are profile keys and values are updated values, update those keys for the user
     static async updateUser(username, updates){
         let res = await this.request(`users/${username}`, updates, "patch", false, true)
