@@ -1,6 +1,14 @@
 import React from 'react'
 
-function PageButtons({prevPage, nextPage, numPages, pageNum}){
+function PageButtons({setPageNum, numPages, pageNum}){
+
+    const prevPage = () => {
+        setPageNum(pageNum => pageNum - 1)
+    }
+
+    const nextPage = () => {
+        setPageNum(pageNum => pageNum + 1)
+    }
 
     return(
         <div className="container buttons">

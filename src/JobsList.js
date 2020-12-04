@@ -9,7 +9,6 @@ import PageButtons from './PageButtons'
 function JobsList({toggleJob, jobAdded}) {
     const [jobs, setJobs] = useState([])
     const [pageNum, setPageNum] = useState(0)
-    const [currPage, setCurrPage] = useState([])
     const [pages, setPages] = useState([])
 
     //set the list of jobs upon rendering
@@ -35,23 +34,17 @@ function JobsList({toggleJob, jobAdded}) {
         setJobs(res)
     }
 
-    const prevPage = () => {
-        setPageNum(pageNum => pageNum - 1)
-    }
-
-    const nextPage = () => {
-        setPageNum(pageNum => pageNum + 1)
-    }
+    
 
     const list = <div className="JobsList">
         <Search filter={filterJobs} />
-        <CardList title='jobs' items={pages} toggleJob={toggleJob} pageNum={pageNum} prevPage={prevPage} nextPage={nextPage}/>
-        <PageButtons prevPage={prevPage} nextPage={nextPage} numPages={pages.length} pageNum={pageNum}/>
+        <CardList title='jobs' items={pages} toggleJob={toggleJob} pageNum={pageNum} />
+        <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum}/>
     </div>
 
     return (
         <>
-        {!pages[0] ? null : list}
+            {!pages[0] ? null : list}
         </>
     )
 }
