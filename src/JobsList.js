@@ -3,7 +3,7 @@ import JoblyApi from './JoblyApi'
 import Search from './Search'
 import CardList from './CardList'
 import { paginateData } from './helpers'
-import './JobList.css'
+import './JobsList.css'
 import PageButtons from './PageButtons'
 
 function JobsList({toggleJob, jobAdded}) {

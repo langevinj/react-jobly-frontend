@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom'
 import App from './App';
 
@@ -16,4 +16,4 @@ it('matches the snapshot', function () {
     </MemoryRouter>);
 
     expect(asFragment).toMatchSnapshot();
-})
+});
