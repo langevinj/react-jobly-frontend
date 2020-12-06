@@ -20,8 +20,12 @@ function App() {
   useEffect(() => {
     async function loadUser(){
       if(user){
-        let res = await JoblyApi.getUserInfo(user.user.username)
-        setUser(res)
+        try{
+          let res = await JoblyApi.getUserInfo(user.user.username)
+          setUser(res)
+        } catch (err) {
+          console.error(err)
+        }
       }
     }
     loadUser()
