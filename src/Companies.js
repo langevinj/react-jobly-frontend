@@ -38,7 +38,7 @@ function Companies(){
 
     const list = <div className="CompaniesList">
         <Search filter={filterCompanies} />
-        <CardList title={'companies'} items={pages} pageNum={pageNum} />
+        <CardList title={'companies'} items={pages} pageNum={pageNum}/>
         <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} />
     </div>  
 

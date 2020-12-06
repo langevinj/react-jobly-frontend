@@ -6,7 +6,7 @@ import './Company.css'
 import { paginateData } from './helpers'
 import PageButtons from './PageButtons'
 
-function Company() {
+function Company({toggleJob}) {
     const [company, setCompany] = useState({
         handle: "",
         name: "",
@@ -36,7 +36,7 @@ function Company() {
         loadCompany()
     }, [currHandle])
 
-    const list = <><CardList title='jobs' items={pages} pageNum={pageNum}/>
+    const list = <><CardList title='jobs' items={pages} pageNum={pageNum} toggleJob={toggleJob}/>
             <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} /></>
 
     return (
