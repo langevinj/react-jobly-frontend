@@ -1,4 +1,8 @@
-.Search-bar {
+.form-container {
     display: inline-block;
     width: 20rem;
+}
+
+.edit {
+    text-align: left;
 }

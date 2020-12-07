@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './EditProfile.css'
+import './Forms.css'
 
 function EditProfile({ u, updateUser }) {
     //keeping track of the old password incase I want to add more validation
@@ -35,7 +35,7 @@ function EditProfile({ u, updateUser }) {
     }
 
     return (
-        <div className="EditProfile-card">
+        <div className="EditProfile-card form-container">
             <h2>{u.username}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">

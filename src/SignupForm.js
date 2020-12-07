@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import JoblyApi from './JoblyApi'
 import { useHistory } from 'react-router-dom'
-import './SignupForm.css'
+import './Forms.css'
 
 function SignupForm({logIn}) {
     const history = useHistory();
@@ -40,7 +40,7 @@ function SignupForm({logIn}) {
     }
 
     return (
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <form className="signup-form form-container" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="username">Username:</label>
                 <input name="username" value={formData.username} id="username" onChange={handleChange} type="text" className="form-control"></input>

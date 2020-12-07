@@ -24,7 +24,7 @@ function Search({ filter }){
     const debounceSearch = debounce(() => filter(searchTerm.term), 1000);
 
     return (
-         <form className="Search-bar mt-5" onSubmit={handleSubmit}>
+         <form className="Search-bar mt-5 form-container" onSubmit={handleSubmit}>
              <div className="input-group">
                 <input type="text" placeholder="Search..." name="term" id="term" onChange={handleChange} value={searchTerm.term} className="form-control" aria-describedby="button-addon1"></input>
                 <button className="btn-primary rounded" type="button" id="button-addon1">Search</button>
