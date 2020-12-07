@@ -1,5 +1,6 @@
 import React, { useState }  from 'react'
 import { debounce } from 'lodash'
+import './Forms.css'
 
 function Search({ filter }){
     const [searchTerm, setSearchTerm] = useState({term: ""})
@@ -24,8 +25,10 @@ function Search({ filter }){
 
     return (
          <form className="Search-bar mt-5" onSubmit={handleSubmit}>
-             <input type="text" placeholder="Search..." name="term" id="term" onChange={handleChange} value={searchTerm.term}></input>
-             <button>Search</button>
+             <div className="input-group">
+                <input type="text" placeholder="Search..." name="term" id="term" onChange={handleChange} value={searchTerm.term} className="form-control" aria-describedby="button-addon1"></input>
+                <button className="btn-primary rounded" type="button" id="button-addon1">Search</button>
+             </div>
          </form>
     )
 }
