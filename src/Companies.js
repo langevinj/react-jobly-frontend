@@ -45,7 +45,7 @@ function Companies(){
 
     return (
         <>
-            {!pages[0] ? null : list}
+            {!pages[0] ? <div className="mt-3"><p>....no results right now</p></div> : list}
         </>
     )
 }
