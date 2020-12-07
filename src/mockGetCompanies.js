@@ -1,7 +1,7 @@
 import { companies } from './_testCommon'
 
 function mockGetCompanies (){
-    return companies
+      return companies
 }
 
 export default mockGetCompanies;
