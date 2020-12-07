@@ -21,7 +21,7 @@ class JoblyApi {
         try {
             return (await axios({
                 method: verb,
-                url: `${BASE_URL}/${endpoint}`,
+                url: `${BASE_URL}${endpoint}`,
                 [verb === "get" ? "params" : "data"]: paramsOrData,
                 headers: headers
             })).data;
@@ -56,10 +56,10 @@ class JoblyApi {
     }
 
     //apply for job with given id
-    static async applyForJob(id) {
-        let res = await this.request(`/testuser/jobs/${id}`, {}, "post", true);
-        return res.applied
-    }
+    // static async applyForJob(id) {
+    //     let res = await this.request(`/testuser/jobs/${id}`, {}, "post", true);
+    //     return res.applied
+    // }
 
     //get a list of all jobs
     static async getJobs(){
