@@ -20,6 +20,10 @@ const jobPages = [[{
         salary: 86000,
         title: "Accountant, chartered certified"}]]
 
+
+
 const u1 = {user: {username: "testuser", firstName: "test", lastName: "testy", isAdmin: false, applications: [jobPages[0][0].id, jobPages[0][1].id]}}
 
-export { jobPages, u1 }
+const companies = { companies: [{ handle: "test-company-1", name="testcompany1", description: "the first test company.", numEmployees: 50, logoUrl: "www.image.jpg" }, { handle: "test-company-2", name="testcompany2", description: "the second test company.", numEmployees: 100, logoUrl: "www.fake.com" }] }
+
+export { jobPages, u1, companies }
