@@ -14,9 +14,9 @@ function Login({logIn}) {
 
     return (
         <div className="container">
-            <div className="toggle-container">
-            <button id="login-toggle" value="login" onClick={toggleView}>Login</button>
-            <button id="signup-toggle" value="signup" onClick={toggleView}>Sign-Up</button>
+            <div className="toggle-container mb-3">
+                <button id="login-toggle" value="login" onClick={toggleView} className="btn-primary mr-1 rounded">Login</button>
+                <button id="signup-toggle" value="signup" onClick={toggleView} className="btn-primary rounded ml-1">Sign-Up</button>
             </div>
             <div className="form-container">
                 {formView === "login" ? <LoginForm logIn={logIn}/> : <SignupForm logIn={logIn}/>}

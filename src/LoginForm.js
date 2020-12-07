@@ -37,6 +37,7 @@ function LoginForm({logIn}) {
 
     return (
         <form className="login-form" onSubmit={handleSubmit}>
+            <h4>Welcome back!</h4>
             <div className="form-group">
                 <label htmlFor="username">Username: </label>
                 <input name="username" value={formData.username} id="username" onChange={handleChange} type="text"></input>   
