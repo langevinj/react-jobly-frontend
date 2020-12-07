@@ -23,7 +23,7 @@ function Search({ filter }){
     const debounceSearch = debounce(() => filter(searchTerm.term), 1000);
 
     return (
-         <form className="Search-bar" onSubmit={handleSubmit}>
+         <form className="Search-bar mt-5" onSubmit={handleSubmit}>
              <input type="text" placeholder="Search..." name="term" id="term" onChange={handleChange} value={searchTerm.term}></input>
              <button>Search</button>
          </form>
