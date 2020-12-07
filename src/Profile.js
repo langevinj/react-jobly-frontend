@@ -27,12 +27,6 @@ function Profile() {
     }
 
     const staticView = u ? (
-        // <div className="Profile-card">
-        //     <h2>Username: {u.username}</h2>
-        //     <h3>Name: {u.firstName} {u.lastName}</h3>
-        //     <h3>{u.email}</h3>
-        //     
-        // </div>
         <div className="profile-info">
             <table className="table table-dark">
                 <tbody>
