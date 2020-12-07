@@ -40,11 +40,11 @@ function LoginForm({logIn}) {
             <h4>Welcome back!</h4>
             <div className="form-group">
                 <label htmlFor="username">Username: </label>
-                <input name="username" value={formData.username} id="username" onChange={handleChange} type="text"></input>   
+                <input name="username" value={formData.username} id="username" onChange={handleChange} type="text" className="form-control"></input>   
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password: </label>
-                <input name="password" value={formData.password} id="password" onChange={handleChange} type="password"></input>
+                <input name="password" value={formData.password} id="password" onChange={handleChange} type="password" className="form-control"></input>
             </div>
             <button className="submitButton btn-primary rounded">Submit</button>
         </form>
