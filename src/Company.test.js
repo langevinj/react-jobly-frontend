@@ -3,12 +3,13 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
 import Company from './Company'
-import { joseToDer } from 'ecdsa-sig-formatter';
 
 const toggleJob = () => {return ""}
 
 // const handleParams = jest.spyOn('react-router-dom', "useParams");
 // handleParams.mockImplementation(() => {handle: 'jackson-sons'})
+
+//server must be running for tests to pass
 
 it("renders without crashing", function () {
     render(<MemoryRouter initialEntries={['companies/jackson-sons']}>
