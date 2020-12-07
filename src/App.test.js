@@ -1,6 +1,8 @@
 import React from 'react'
-import { render } from '@testing-library/react';
+import { render, cleanup, waitFor} from '@testing-library/react';
+import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
+import axiosMock from 'axios'
 import App from './App';
 
 it('renders without crashing', function () {

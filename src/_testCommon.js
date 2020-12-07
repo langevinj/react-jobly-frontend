@@ -20,5 +20,6 @@ const jobPages = [[{
         salary: 86000,
         title: "Accountant, chartered certified"}]]
 
+const u1 = {user: {username: "testuser", firstName: "test", lastName: "testy", isAdmin: false, applications: [jobPages[0][0].id, jobPages[0][1].id]}}
 
-export { jobPages }
+export { jobPages, u1 }
