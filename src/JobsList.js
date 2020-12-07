@@ -47,6 +47,7 @@ function JobsList({toggleJob, jobAdded}) {
 
     return (
         <div className="JobsList">
+            <h4>Applying for jobs is as simple as clicking a button!</h4>
             <Search filter={filterJobs} />
             {!pages[0] ? <div className="mt-3"><p>....no results right now</p></div> : list}
         </div>

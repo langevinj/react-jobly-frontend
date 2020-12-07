@@ -41,8 +41,10 @@ function Company({toggleJob}) {
 
     return (
         <div className="Company">
-            <h3 className="company-name">{company.name}</h3>
-            <h4>{company.description}</h4>
+            <div className="heading-container bg-info rounded">
+                <h3 className="company-name">{company.name}</h3>
+                <p>{company.description}</p>
+            </div>
             {!pages[0] ? null : list}
         </div>
     )
