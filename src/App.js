@@ -12,7 +12,6 @@ function App() {
 
   //get methods for using localStorage from hooks
   const [token, setToken] = useLocalStorage("token")
-  // const [user, addUser, clearUser] = useLocalUser({});
   const [user, setUser] = useLocalStorage("user")
   const [jobAdded, setJobAdded] = useState(false)
 

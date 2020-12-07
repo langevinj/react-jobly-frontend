@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 function useLocalStorage(key, initialValue = []) {
     if (localStorage.getItem(key)) {
@@ -13,28 +13,4 @@ function useLocalStorage(key, initialValue = []) {
     return [value, setValue]
 }
 
-function useToken(){
-    const [token, setToken] = useLocalStorage("token");
-
-    const addToken = (value) => {
-        setToken(value);
-    }
-
-    const clearToken = () => setToken(null);
-    
-    return [token, addToken, clearToken]
-}
-
-function useLocalUser(){
-    const [user, setUser] = useLocalStorage("user");
-
-    const addUser = (value="") => {
-        setUser(value);
-    }
-
-    const clearUser = () => setUser(null);
-
-    return [user, addUser, clearUser]
-}
-
-export { useToken, useLocalUser, useLocalStorage }
+export { useLocalStorage }
