@@ -43,8 +43,8 @@ function App() {
       <BrowserRouter>
         <UserContext.Provider value={{ currentUser, setCurrUser }}>
           <div className="App bg-light">
-            <Nav user={user} />
-            <Routes logOut={logOut} user={user} toggleJob={toggleJob} jobAdded={jobAdded} logIn={logIn} />
+            <Nav logOut={logOut} />
+            <Routes setToken={setToken} />
           </div>
         </UserContext.Provider>
       </BrowserRouter>
