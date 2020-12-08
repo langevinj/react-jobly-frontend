@@ -17,7 +17,7 @@ function Nav({user}){
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar-nav ml-auto">
+                <div className="navbar-nav ml-auto">
                         <NavLink exact to="/companies" className="nav-item nav-link" activeStyle={ACTIVE_STYLES}>Companies</NavLink>
                         <NavLink exact to="/jobs" className="nav-link nav-item" activeStyle={ACTIVE_STYLES}>Jobs</NavLink>
                         <NavLink exact to="/profile" className="nav-link nav-item" activeStyle={ACTIVE_STYLES}>Profile</NavLink>
