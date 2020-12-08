@@ -7,6 +7,8 @@ import PageButtons from './PageButtons'
 
 function Companies(){
     const [companies, setCompanies] = useState([])
+
+    //for use with pagination
     const [pageNum, setPageNum] = useState(0)
     const [pages, setPages] = useState([])
 
