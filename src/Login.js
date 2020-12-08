@@ -57,8 +57,10 @@ function Login({ setToken }) {
         try {
             if(endpoint === 'login'){
                 token = await JoblyApi.login(data);
+                JoblyApi.token = token;
             } else {
                 token = await JoblyApi.signup(data);
+                JoblyApi.token = token;
             }
         } catch (err) {
             return setFormData(f => ({ ...f, err }));
