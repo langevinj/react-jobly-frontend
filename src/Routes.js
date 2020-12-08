@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import Home from './Home'
 import Companies from './Companies'
@@ -7,9 +7,11 @@ import JobsList from './JobsList'
 import Login from './Login'
 import Profile from './Profile'
 import Logout from './Logout'
+import UserContext from './UserContext'
 
-function Routes({logOut, user, toggleJob, jobAdded, logIn}){
-
+function Routes({setToken}){
+    const { currUser } = useContext(UserContext);
+    
     const loggedOutRoutes = (
         <Switch>
             <Route exact path="/login"><Login logIn={logIn} /></Route>
@@ -32,7 +34,7 @@ function Routes({logOut, user, toggleJob, jobAdded, logIn}){
     )
 
     return (
-        <>{!user ? loggedOutRoutes : loggedInRoutes}</> 
+        <>{!currUser ? loggedOutRoutes : loggedInRoutes}</> 
     )
 }
 
