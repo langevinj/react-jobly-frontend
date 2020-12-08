@@ -1,8 +1,12 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { NavLink, Link } from 'react-router-dom'
 import './Nav.css'
+import UserContext from './UserContext'
 
-function Nav({user}){
+function Nav({logOut}){
+    //grab the user from the Context provider
+    const { currUser } = useContext(UserContext);
+
     const ACTIVE_STYLES = {
         fontWeight: "bold",
         color: 	"#0275d8",
@@ -20,7 +24,7 @@ function Nav({user}){
                         <NavLink exact to="/companies" className="nav-item nav-link" activeStyle={ACTIVE_STYLES}>Companies</NavLink>
                         <NavLink exact to="/jobs" className="nav-link nav-item" activeStyle={ACTIVE_STYLES}>Jobs</NavLink>
                         <NavLink exact to="/profile" className="nav-link nav-item" activeStyle={ACTIVE_STYLES}>Profile</NavLink>
-                        <NavLink exact to="/logout" className="nav-link nav-item" activeStyle={ACTIVE_STYLES}>Logout</NavLink>
+                        <Link exact to="/" className="nav-link nav-item" activeStyle={ACTIVE_STYLES} onClick={logOut}>Logout</Link>
                 </div>
             </div>
         </nav>
@@ -39,7 +43,7 @@ function Nav({user}){
     )
 
     return (
-        <>{!user ? loggedOutView : loggedInView }</>
+        <>{!currUser ? loggedOutView : loggedInView }</>
     )
 }
 

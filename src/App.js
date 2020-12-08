@@ -41,7 +41,7 @@ function App() {
 
   return (
       <BrowserRouter>
-        <UserContext.Provider value={{ currentUser, setCurrUser }}>
+        <UserContext.Provider value={{ currUser, setCurrUser }}>
           <div className="App bg-light">
             <Nav logOut={logOut} />
             <Routes setToken={setToken} />
