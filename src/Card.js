@@ -4,7 +4,7 @@ import JobCard from './JobCard'
 import { Link } from 'react-router-dom'
 import './Card.css'
 
-function Card({ title, item, toggleJob }){
+function Card({ title, item, apply = () => null, idx }){
 
     if(title === 'companies'){
         return (
@@ -15,7 +15,7 @@ function Card({ title, item, toggleJob }){
     } else {
         return (
             <div className="Card-body">
-                <JobCard job={item} toggleJob={toggleJob}/>
+                <JobCard job={item} handleApply={() => apply(idx)} />
             </div>
         )
     }
