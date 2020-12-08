@@ -4,25 +4,25 @@ import { TOKEN_KEY } from './App.js'
 const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 
 class JoblyApi {
-    static async request(endpoint, paramsOrData = {}, verb = "get") {
+    static async request(endpoint, params = {}, verb = "get") {
 
         //get the token from localStorage
         let _token = localStorage.getItem(TOKEN_KEY)
 
-        console.debug("API Call:", endpoint, paramsOrData, verb);
+        console.debug("API Call:", endpoint, params, verb);
 
         let query;
 
         //set the correct data for the query to the API based on the verb
         if (verb === "get") {
             query = axios.get(
-                `${BASE_URL}/${endpoint}`, { params: { _token, ...params } });
-        } else if (ver === "post") {
+                `${BASE_URL}/${endpoint}`, {headers: {'authorization': _token}}, {params: { _token, ...params } });
+        } else if (verb === "post") {
             query = axios.post(
-                `${BASE_URL}/${endpoint}`, { _token, ...params });
+                `${BASE_URL}/${endpoint}`, { headers: { 'authorization': _token } }, { _token, ...params });
         } else if (verb === "patch") {
             query = axios.patch(
-                `${BASE_URL}/${endpoint}`, { _token, ...params });
+                `${BASE_URL}/${endpoint}`, { headers: { 'authorization': _token } }, { _token, ...params });
         }
 
         try {
