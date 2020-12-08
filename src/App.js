@@ -9,13 +9,13 @@ import { useLocalStorage } from './hooks'
 function App() {
   //state for whether the user is logged in or not
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
   //get methods for using localStorage from hooks
   const [token, setToken] = useLocalStorage("token")
   const [user, setUser] = useLocalStorage("user")
   const [jobAdded, setJobAdded] = useState(false)
-
-  //check local storage to see if the user is logged in
+  // setUser(JSON.parse(localStorage.getItem("user")));
+  
+  // check local storage to see if the user is logged in
   useEffect(() => {
     async function loadUser(){
       if(user){
@@ -25,10 +25,21 @@ function App() {
         } catch (err) {
           console.error(err)
         }
+      } else {
+        setUser(null)
+        setToken(null)
       }
     }
     loadUser()
   },[jobAdded, isLoggedIn])
+  // useEffect(() => {
+  //   async function loadUser(){
+  //     if(token){
+  //       let res = await JoblyApi.getUserInfo(user.user.username)
+  //       setUser(res)
+  //     }
+  // } loadUser()
+  // }, [jobAdded])
 
   const logOut = () => {
     setUser(null);
