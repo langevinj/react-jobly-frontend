@@ -28,31 +28,48 @@ function App() {
     }
     setUserLoaded(false);
     getCurrentUser();
-  }, [token])
-  //state for whether the user is logged in or not
-  // const [isLoggedIn, setIsLoggedIn] = useState(false)
-  //get methods for using localStorage from hooks
-  // const [user, setUser] = useLocalStorage("user")
-  const [jobAdded, setJobAdded] = useState(false)
+  }, [token]);
+
+  const logOut = () => {
+    setCurrUser(null);
+    setToken(null);
+  }
+
+  if(!userLoaded) {
+    return <div><h2>Loading...</h2></div>
+  }
+
+  return (
+      <BrowserRouter>
+        <UserContext.Provider value={{ currentUser, setCurrUser }}>
+          <div className="App bg-light">
+            <Nav user={user} />
+            <Routes logOut={logOut} user={user} toggleJob={toggleJob} jobAdded={jobAdded} logIn={logIn} />
+          </div>
+        </UserContext.Provider>
+      </BrowserRouter>
+  );
+
+  // const [jobAdded, setJobAdded] = useState(false)
   // setUser(JSON.parse(localStorage.getItem("user")));
   
   // check local storage to see if the user is logged in
-  useEffect(() => {
-    async function loadUser(){
-      if(user){
-        try{
-          let res = await JoblyApi.getUserInfo(user.user.username)
-          setUser(res)
-        } catch (err) {
-          console.error(err)
-        }
-      } else {
-        setUser(null)
-        setToken(null)
-      }
-    }
-    loadUser()
-  },[jobAdded, isLoggedIn])
+  // useEffect(() => {
+  //   async function loadUser(){
+  //     if(user){
+  //       try{
+  //         let res = await JoblyApi.getUserInfo(user.user.username)
+  //         setUser(res)
+  //       } catch (err) {
+  //         console.error(err)
+  //       }
+  //     } else {
+  //       setUser(null)
+  //       setToken(null)
+  //     }
+  //   }
+  //   loadUser()
+  // },[jobAdded, isLoggedIn])
 
   // useEffect(() => {
   //   async function loadUser(){
@@ -63,32 +80,21 @@ function App() {
   // } loadUser()
   // }, [jobAdded])
 
-  const logOut = () => {
-    setUser(null);
-    setToken(null);
-    setIsLoggedIn(false)
-  }
+ 
 
-  const logIn = (token, username) => {
-    setUser({user: {username: username}});
-    setToken(token)
-    setIsLoggedIn(true)
-  }
+  // const logIn = (token, username) => {
+  //   setUser({user: {username: username}});
+  //   setToken(token)
+  //   setIsLoggedIn(true)
+  // }
 
-  const toggleJob = () => {
-    setJobAdded(!jobAdded)
-  }
+  // const toggleJob = () => {
+  //   setJobAdded(!jobAdded)
+  // }
 
   
 
-  return (
-    <div className="App bg-light">
-      <BrowserRouter>
-          <Nav user={user}/>
-          <Routes logOut={logOut} user={user} toggleJob={toggleJob} jobAdded={jobAdded} logIn={logIn}/>
-      </BrowserRouter>
-    </div>
-  );
+  
 }
 
 export default App;
