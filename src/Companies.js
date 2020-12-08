@@ -28,13 +28,7 @@ function Companies(){
     }, [companies])
 
     const filterCompanies =  async (searchTerm) => {
-        let res;
-        //if the searchterm isn't blank then filter by the term
-        if(searchTerm !== ""){
-            res = await JoblyApi.filterCompanies(searchTerm)
-        } else {
-            res = await JoblyApi.getCompanies();
-        }
+        let res = await JoblyApi.getCompanies(searchTerm);
         setCompanies(res)
     }
 
