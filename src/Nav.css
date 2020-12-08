@@ -40,3 +40,8 @@ nav {
 .navbar {
       padding: 0.35rem 1rem;
 }
+
+.navlink.active { 
+    font-weight: "bold";
+    color: 	"#0275d8";
+}

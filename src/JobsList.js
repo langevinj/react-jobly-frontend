@@ -48,7 +48,7 @@ function JobsList() {
 
     const list = 
     <>
-        <CardList title='jobs' items={pages} toggleJob={toggleJob} pageNum={pageNum} />
+        <CardList title='jobs' items={pages} apply={apply} pageNum={pageNum} />
         <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum}/>
     </>
 

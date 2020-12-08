@@ -6,6 +6,7 @@ import './App.css';
 import Nav from './Nav'
 import Routes from './Routes'
 import JoblyApi from './JoblyApi';
+import UserContext from './UserContext'
 
 export const TOKEN_KEY = "jobly-token"
 
@@ -20,7 +21,7 @@ function App() {
       try{
         let { username } = decode(token);
         let currentUser = await JoblyApi.getUserInfo(username)
-        setCurrUser(currUser);
+        setCurrUser(currentUser);
       } catch (err) {
         setCurrUser(null);
       }
