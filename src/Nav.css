@@ -29,3 +29,14 @@ li{
     padding-left: 1rem;
     border-bottom: 2px solid rgb(235, 235, 235);
 } */
+
+nav {
+   /* height: 3rem;  */
+   margin-bottom: 2rem;
+   border-bottom: 2px solid rgb(221, 221, 221);
+ 
+}
+
+.navbar {
+      padding: 0.35rem 1rem;
+}
