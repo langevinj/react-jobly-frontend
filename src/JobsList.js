@@ -6,18 +6,16 @@ import { paginateData } from './helpers'
 import './JobsList.css'
 import PageButtons from './PageButtons'
 
-function JobsList({toggleJob, jobAdded}) {
+function JobsList() {
     const [jobs, setJobs] = useState([])
+
+    //used for pagination
     const [pageNum, setPageNum] = useState(0)
     const [pages, setPages] = useState([])
 
     //set the list of jobs upon rendering
-    useEffect(() => {
-        async function gatherJobs() {
-            let res = await JoblyApi.getJobs();
-            setJobs(res);
-        }
-        gatherJobs()
+    useEffect(function() {
+        filterJobs();
     }, []);
 
     useEffect(() => {
@@ -37,6 +35,15 @@ function JobsList({toggleJob, jobAdded}) {
             res = await JoblyApi.getJobs();
         }
         setJobs(res)
+    }
+
+    //apply to job and change the message for it in the job list
+    async function apply(idx){
+        let jobId = jobs[idx].id
+        let message = await JoblyApi.applyToJob(jobId);
+        setJobs(j => j.map(job=>
+            job.id === jobId ? { ...job, state: message} : job
+        ))
     }
 
     const list = 
