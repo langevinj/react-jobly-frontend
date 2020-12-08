@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import EditProfile from './EditProfile'
-import { useLocalStorage } from './hooks'
+import useLocalStorage from './hooks'
 import JoblyApi from './JoblyApi'
 import './Profile.css'
 

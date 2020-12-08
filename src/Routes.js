@@ -6,7 +6,7 @@ import Company from './Company.js'
 import JobsList from './JobsList'
 import Login from './Login'
 import Profile from './Profile'
-import Logout from './Logout'
+// import Logout from './Logout'
 import UserContext from './UserContext'
 
 function Routes({setToken}){

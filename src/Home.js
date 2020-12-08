@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom'
+import UserContext from './UserContext'
 
-function Home({user}) {
+function Home() {
+    const { currUser } = useContext(UserContext);
+
     const loggedOutView = (
         <div className="container-fluid bg-light home">
             <div className="row align-items-start">
@@ -39,7 +42,7 @@ function Home({user}) {
 
     return (
         <>
-            {!user ? loggedOutView : loggedInView}
+            {!currUser ? loggedOutView : loggedInView}
         </>
     )
 }
