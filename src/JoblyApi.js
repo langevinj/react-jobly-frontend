@@ -1,5 +1,6 @@
 import axios from  'axios'
-const BASE_URL = "http://localhost:3001/";
+const BASE_URL = "" || "http://localhost:3001/";
+// const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 
 class JoblyApi {
     static async request(endpoint, paramsOrData = {}, verb = "get", t_required=false, headers=false) {
@@ -46,6 +47,7 @@ class JoblyApi {
     //get a list of all companies
     static async getCompanies(){
         let res = await this.request(`companies/`);
+        console.log(process.env.BASE_URL)
         return res.companies;
     }
 

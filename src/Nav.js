@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import { NavLink } from 'react-router-dom'
 import './Nav.css'
 
