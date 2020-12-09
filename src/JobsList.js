@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { paginateData } from './helpers'
+import UserContext from './UserContext'
 import JoblyApi from './JoblyApi'
 import Search from './Search'
 import CardList from './CardList'
-import { paginateData } from './helpers'
-import './JobsList.css'
 import PageButtons from './PageButtons'
-import UserContext from './UserContext'
+import './JobsList.css'
 
 function JobsList() {
     const [jobs, setJobs] = useState([])
@@ -20,6 +20,7 @@ function JobsList() {
         filterJobs();
     }, []);
 
+    //when the list of jobs changes paginate the pages
     useEffect(() => {
         function paginatePages(){
             setPages(pages => (paginateData(jobs)))
