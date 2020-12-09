@@ -1,19 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { paginateData } from './helpers'
+
 import JoblyApi from './JoblyApi'
 import CardList from './CardList'
-import './Company.css'
-import { paginateData } from './helpers'
 import PageButtons from './PageButtons'
 import UserContext from './UserContext'
+import './Company.css'
 
 function Company() {
     //grab the company handle from params
-    const { handle } = useParams()
+    const { handle } = useParams();
     const { currUser } = useContext(UserContext)
 
     const [company, setCompany] = useState(null);
-   
+    
+    //variables for use with pagination
     const [pageNum, setPageNum] = useState(0)
     const [pages, setPages] = useState([])
 
@@ -36,6 +38,16 @@ function Company() {
 
         loadCompanyAndJobs();
     }, [handle, currUser]);
+
+    //paginate the pages of jobs whenever the company changes
+    useEffect(() => {
+        function pages() {
+            if (company) {
+                setPages(pages => (paginateData(company.jobs)))
+            }
+        }
+        pages()
+    }, [company]);
 
     //apply to a job
     async function apply(id) {
@@ -61,15 +73,7 @@ function Company() {
         }
     }
 
-    //paginate the pages
-    useEffect(() => {
-        function pages(){
-            if(company){
-                setPages(pages => (paginateData(company.jobs)))
-            }
-        }
-        pages()
-    }, [company])
+    
 
     //show loading if no company has been received yet
     if (!company) {
