@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Alert from './Alert'
-// import LoginForm from './LoginForm'
-// import SignupForm from './SignupForm'
 import JoblyApi from './JoblyApi'
 import './Forms.css'
 
