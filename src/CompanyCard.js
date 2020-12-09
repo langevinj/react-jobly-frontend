@@ -3,7 +3,7 @@ import React from 'react'
 import defaultLogo from './defaultLogo.png'
 import './CompanyCard.css'
 
-function CompanyCard({ company }) {
+function CompanyCard({ company = {} }) {
     // can use below code if accurate company images are present in the database
     // const logoSource = company.logoUrl ? company.logo_url : defaultLogo
 
