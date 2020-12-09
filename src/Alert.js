@@ -9,4 +9,9 @@ function Alert({ type, messages }){
     )
 }
 
+Alert.defaultProps = {
+    type: "danger",
+    messages: []
+}
+
 export default Alert;
