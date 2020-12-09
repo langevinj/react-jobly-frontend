@@ -25,16 +25,48 @@ function Company() {
     const [pageNum, setPageNum] = useState(0)
     const [pages, setPages] = useState([])
 
-    // useEffect(() => {
-    //     async function loadCompanyAndJobs() {
-    //         const { applications } = currUser;
-    //         const c = await JoblyApi.getCompany(handle);
+    useEffect(() => {
+        async function loadCompanyAndJobs() {
+            const { applications } = currUser;
+            const c = await JoblyApi.getCompany(handle);
 
-    //         //get all the job Ids that have been applied to
-    //         const jobIdsAppliedTo = new Set(applications.map =>)
-    //     }
-    // })
+            //get all the job Ids that have been applied to
+            const jobIdsAppliedTo = new Set(applications.map(jobId => jobId));
 
+            //set state for jobs of the company the user has applied to
+            c.jobs = c.jobs.map(job => ({
+                ...job,
+                state: jobIdsAppliedTo.has(job.id) ? "applied" : null
+            }));
+            setCompany(c)
+        }
+
+        loadCompanyAndJobs();
+    }, [handle, currUser]);
+
+    async function apply(id) {
+        if (company && Array.isArray(company.jobs)){
+            let message = await JoblyApi.applyToJob(currUser.username, id);
+            setCompany(c => {
+                let newCompany = { ...c };
+                newCompany.jobs = newCompany.jobs.map(job => job.id === id ? { ...job, state: "applied"} : job);
+                return newCompany;
+            });
+        }
+    }
+
+    useEffect(() => {
+        function pages(){
+            if(company){
+                setPages(pages => (paginateData(company.jobs)))
+            }
+        }
+        pages()
+    }, [company])
+
+    if (!company) {
+        return <div>Loading...</div>
+    }
     // useEffect(() => {
     //     async function loadCompany(){
     //         let res = await JoblyApi.getCompany(handle)
@@ -48,7 +80,7 @@ function Company() {
     //     loadCompany()
     // }, [currHandle])
 
-    const list = <><CardList title='jobs' items={pages} pageNum={pageNum}/>
+    const list = <><CardList title='jobs' items={pages} pageNum={pageNum} apply={apply}/>
             <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} /></>
 
     return (
