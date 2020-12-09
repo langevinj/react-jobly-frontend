@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react' 
+import { paginateData } from './helpers'
+
 import JoblyApi from './JoblyApi'
 import Search from './Search'
 import CardList from './CardList'
-import { paginateData } from './helpers'
 import PageButtons from './PageButtons'
 
 function Companies(){
@@ -12,6 +13,7 @@ function Companies(){
     const [pageNum, setPageNum] = useState(0)
     const [pages, setPages] = useState([])
 
+    //on rendering component, get and set the companies
     useEffect(() => {
         async function gatherCompanies(){
             let res = await JoblyApi.getCompanies();
@@ -20,6 +22,7 @@ function Companies(){
         gatherCompanies()
     }, [])
 
+    //whenever the companies are set, paginate the data into pages
     useEffect(() => {
         function paginatePages() {
             setPages(pages => (paginateData(companies)))
@@ -27,6 +30,7 @@ function Companies(){
         paginatePages()
     }, [companies])
 
+    //search function for the list of companies
     const filterCompanies =  async (searchTerm) => {
         let res = await JoblyApi.getCompanies(searchTerm);
         setCompanies(res)
