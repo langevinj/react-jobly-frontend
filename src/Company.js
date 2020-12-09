@@ -73,8 +73,6 @@ function Company() {
         }
     }
 
-    
-
     //show loading if no company has been received yet
     if (!company) {
         return <div>Loading...</div>
