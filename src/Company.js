@@ -13,18 +13,11 @@ function Company() {
     const { currUser } = useContext(UserContext)
 
     const [company, setCompany] = useState(null);
-    // const [company, setCompany] = useState({
-    //     handle: "",
-    //     name: "",
-    //     description: "",
-    //     numEmployees: 0,
-    //     jobs: [],
-    //     logoUrl: ""
-    // })
-    // const [currHandle, setHandle] = useState(null)
+   
     const [pageNum, setPageNum] = useState(0)
     const [pages, setPages] = useState([])
 
+    //when the page loads grab all the jobs from the company and set their state based on the user's application status
     useEffect(() => {
         async function loadCompanyAndJobs() {
             const { applications } = currUser;
@@ -44,6 +37,7 @@ function Company() {
         loadCompanyAndJobs();
     }, [handle, currUser]);
 
+    //apply to a job
     async function apply(id) {
         if (company && Array.isArray(company.jobs)){
             let message = await JoblyApi.applyToJob(currUser.username, id);
@@ -55,6 +49,19 @@ function Company() {
         }
     }
 
+    //unapply from a job
+    async function unapply(id) {
+        if (company && Array.isArray(company.jobs)){
+            let message = await JoblyApi.unapplyToJob(currUser.username, id)
+            setCompany(c => {
+                let newCompany = { ...c };
+                newCompany.jobs = newCompany.jobs.map(job => job.id === id ? { ...job, state: null} : job);
+                return newCompany;
+            });
+        }
+    }
+
+    //paginate the pages
     useEffect(() => {
         function pages(){
             if(company){
@@ -64,23 +71,12 @@ function Company() {
         pages()
     }, [company])
 
+    //show loading if no company has been received yet
     if (!company) {
         return <div>Loading...</div>
     }
-    // useEffect(() => {
-    //     async function loadCompany(){
-    //         let res = await JoblyApi.getCompany(handle)
-    //         setCompany(oldCompany => ({ ...oldCompany, ...res}))
-    //         //trigger a rerender if there is a handle now
-    //         if(!currHandle){
-    //             setHandle(res.handle)
-    //         }
-    //         setPages(pages => (paginateData(company.jobs)))
-    //     }
-    //     loadCompany()
-    // }, [currHandle])
 
-    const list = <><CardList title='jobs' items={pages} pageNum={pageNum} apply={apply}/>
+    const list = <><CardList title='jobs' items={pages} pageNum={pageNum} apply={apply} unapply={unapply}/>
             <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} /></>
 
     return (
