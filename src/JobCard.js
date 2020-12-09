@@ -1,11 +1,11 @@
 import React from 'react' 
 import './JobCard.css'
 
+//create a single JobCard with the ability to apply or unapply for a job
 function JobCard({ job = {}, handleApply, handleUnApply }){
     const { title, salary, equity } = job;
   
     const btnApplied = (<button type="button" data-toggle="button" className="Apply btn-secondary rounded" onClick={handleUnApply}>Applied</button>)
-
     const btnApply = (<button type="button" data-toggle="button" className="Apply btn-primary rounded" onClick={handleApply}>Apply</button>)
 
     return(
