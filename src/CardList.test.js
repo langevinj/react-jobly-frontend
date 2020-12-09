@@ -13,4 +13,4 @@ it("matches the snapshot", function() {
     const { asFragment } = render(<CardList items={["testcard1", "testcard2"]}/>)
 
     expect(asFragment()).toMatchSnapshot();
-})
+});
