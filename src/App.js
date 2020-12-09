@@ -20,6 +20,7 @@ function App() {
     async function getCurrentUser() {
       try{
         let { username } = decode(token);
+        JoblyApi.token = token;
         let currentUser = await JoblyApi.getUserInfo(username)
         setCurrUser(currentUser);
       } catch (err) {
