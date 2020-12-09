@@ -3,6 +3,9 @@ import JoblyApi from './JoblyApi'
 import './Profile.css'
 import UserContext from './UserContext'
 import './Forms.css'
+import Alert from './Alert'
+
+const MESSAGE_SHOW_TIME = 3000;
 
 function Profile() {
     const { currUser, setCurrUser } = useContext(UserContext)
@@ -16,11 +19,24 @@ function Profile() {
         errors: [],
         saveConfirmed: false
     });
+
+    const messageShownRef = useRef(false);
+    useEffect(
+        function() {
+            if(formData.saveConfirmed && !messageShownRef.current) {
+                messageShownRef.current = true;
+                //show the message for given amount of time
+                setTimeout(function() {
+                    setFormData(f => ({ ...f, saveConfirmed: false }));
+                    messageShownRef.current = false;
+                }, MESSAGE_SHOW_TIME);
+            }
+        }, [formData]
+    );
     
     //submit changes and update via the backend
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        console.log(formData)
 
         try {
             let profileData = {
@@ -36,6 +52,7 @@ function Profile() {
             setFormData(f => ({
                 ...f,
                 errors: [],
+                saveConfirmed: true,
                 password: ""
             }));
             setCurrUser(updatedUser);
@@ -73,6 +90,14 @@ function Profile() {
                     <label htmlFor="password">Confirm password to make changes:</label>
                     <input type="password" name="password" id="password" value={formData.password} onChange={handleChange} className="form-control"></input>
                 </div>
+
+                {formData.errors.length ? (
+                    <Alert type="danger" messages={formData.errors} />
+                ) : null}
+
+                {formData.saveConfirmed ? (
+                    <Alert type="success" messages={["User updated sucessfully"]} />
+                ) : null}
                 <button className="btn-primary rounded" onClick={handleSubmit}>Save Changes</button>
             </form>
         </div>
