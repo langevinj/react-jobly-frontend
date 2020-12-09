@@ -1,9 +1,9 @@
 import axios from  'axios'
-import { TOKEN_KEY } from './App.js'
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3001";
 
 class JoblyApi {
+    //where the local token gets saved
     static token;
 
     static async request(endpoint, data = {}, method = "get") {
@@ -23,35 +23,6 @@ class JoblyApi {
             throw Array.isArray(message) ? message: [message]
         }
     }
-    // static async request(endpoint, params = {}, verb = "get") {
-
-    //     //get the token from localStorage
-    //     let _token = localStorage.getItem(TOKEN_KEY)
-
-    //     console.debug("API Call:", endpoint, params, verb);
-
-    //     let query;
-    //     const headers = { Authorization: `Bearer ${_token}` };
-    //     //set the correct data for the query to the API based on the verb
-    //     if (verb === "get") {
-    //         query = axios.get(
-    //             `${BASE_URL}/${endpoint}`, {params: { _token, ...params } }, headers);
-    //     } else if (verb === "post") {
-    //         query = axios.post(
-    //             `${BASE_URL}/${endpoint}`, { _token, ...params }, headers);
-    //     } else if (verb === "patch") {
-    //         query = axios.patch(
-    //             `${BASE_URL}/${endpoint}`, { _token, ...params }, headers);
-    //     }
-
-    //     try {
-    //         return (await query).data;
-    //     } catch (err) {
-    //         console.error("API Error:", err.response);
-    //         let message = err.response.data.message;
-    //         throw Array.isArray(message) ? message : [message];
-    //     }
-    // }
     
     //get a single company by its handle
     static async getCompany(handle) {
@@ -106,10 +77,6 @@ class JoblyApi {
         let res = await this.request(`users/${username}`, updates, "patch")
         return res.user;
     }
-    
-   
-
-    
 }
 
 export default JoblyApi;
