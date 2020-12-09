@@ -39,15 +39,24 @@ function JobsList() {
         let targetJob = jobs.filter(job => (job.id === id))[0]
         let jobId = targetJob.id
         let message = await JoblyApi.applyToJob(currUser.username, jobId);
-        console.log(message)
         setJobs(j => j.map(job=>
             job.id === jobId ? { ...job, state: message} : job
         ))
     }
 
+    async function unapply(id){
+        let targetJob = jobs.filter(j => (j.id === id))[0]
+        console.log(targetJob)
+        let jobId = targetJob.id
+        let message = await JoblyApi.unapplyToJob(currUser.username, jobId);
+        setJobs(j => j.map(job =>
+            job.id === jobId ? { ...job, state: ""} : job
+        ))
+    }
+
     const list = 
     <>
-        <CardList title='jobs' items={pages} apply={apply} pageNum={pageNum} />
+        <CardList title='jobs' items={pages} apply={apply} unapply={unapply} pageNum={pageNum} />
         <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum}/>
     </>
 

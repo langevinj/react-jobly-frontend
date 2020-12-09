@@ -5,7 +5,7 @@ import { useLocalStorage } from './hooks'
 import { renderJobButton } from './helpers'
 import UserContext from './UserContext'
 
-function JobCard({ job = {}, handleApply }){
+function JobCard({ job = {}, handleApply, handleUnApply }){
     const { title, salary, equity } = job;
 
     const { currUser } = useContext(UserContext)
@@ -24,9 +24,9 @@ function JobCard({ job = {}, handleApply }){
     //     toggleJob()
     // }
 
-    const btnApplied = (<button type="button" data-toggle="button" className="Apply btn-secondary rounded" onClick={handleApply} disabled={job.state}>Applied</button>)
+    const btnApplied = (<button type="button" data-toggle="button" className="Apply btn-secondary rounded" onClick={handleUnApply}>Applied</button>)
 
-    const btnApply = (<button type="button" data-toggle="button" className="Apply btn-primary rounded" onClick={handleApply} disabled={job.state}>Apply</button>)
+    const btnApply = (<button type="button" data-toggle="button" className="Apply btn-primary rounded" onClick={handleApply}>Apply</button>)
 
     return(
         <div className="JobCard">

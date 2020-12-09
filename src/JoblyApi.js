@@ -77,6 +77,12 @@ class JoblyApi {
         return res.message
     }
 
+     //unapply from a job given jobId and username
+    static async unapplyToJob(username, jobId){
+        let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "patch");
+        return res.message
+    }
+
     //login a user
     static async login(data){
         let res = await this.request(`auth/token`, data, "post");
@@ -101,11 +107,7 @@ class JoblyApi {
         return res.user;
     }
     
-    //unapply from a job given jobId and username
-    // static async unapplyToJob(username, jobId){
-    //     let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "patch", true, true);
-    //     return res
-    // }
+   
 
     
 }
