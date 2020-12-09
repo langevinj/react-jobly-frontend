@@ -6,9 +6,6 @@ import './Forms.css'
 
 function Profile() {
     const { currUser, setCurrUser } = useContext(UserContext)
-    // const [user, setUser] = useLocalStorage("user")
-    // const [editView, setEditView] = useState(false)
-    // const [u, setU] = useState(user.user)
 
     const [formData, setFormData] = useState({
         firstName: currUser.firstName || "",
@@ -19,14 +16,11 @@ function Profile() {
         errors: [],
         saveConfirmed: false
     });
-
-    // const toggleView = () => {
-    //     setEditView(!editView)
-    // }
     
     //submit changes and update via the backend
     const handleSubmit = async (evt) => {
         evt.preventDefault();
+        console.log(formData)
 
         try {
             let profileData = {
@@ -37,7 +31,7 @@ function Profile() {
             };
 
             let username = formData.username;
-            let updatedUser = await JoblyApi.saveProfile(username, profileData);
+            let updatedUser = await JoblyApi.updateUser(username, profileData);
             console.log("UPDATED USER", updatedUser)
             setFormData(f => ({
                 ...f,
@@ -58,10 +52,6 @@ function Profile() {
             errors: []
         }));
     }
-
-    // const staticView = u ? (
-     
-    // ) : null
 
     return (
         <div className="EditProfile-card form-container">
