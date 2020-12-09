@@ -1,7 +1,7 @@
 import React from 'react'
-import './CompanyCard.css'
-import { Link } from 'react-router-dom'
+
 import defaultLogo from './defaultLogo.png'
+import './CompanyCard.css'
 
 function CompanyCard({ company }) {
     // can use below code if accurate company images are present in the database
