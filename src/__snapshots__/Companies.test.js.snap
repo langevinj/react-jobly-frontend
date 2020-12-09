@@ -1,3 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches the snapshot 1`] = `[Function]`;
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="CompaniesList"
+  >
+    <h4>
+      Finding the right company for you is an important part of the job hunt:
+    </h4>
+    <form
+      class="Search-bar mt-5 form-container"
+    >
+      <div
+        class="input-group"
+      >
+        <input
+          aria-describedby="button-addon1"
+          class="form-control"
+          id="term"
+          name="term"
+          placeholder="Search..."
+          type="text"
+          value=""
+        />
+        <button
+          class="btn-primary rounded"
+          id="button-addon1"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+    <div
+      class="mt-3"
+    >
+      <p>
+        ....no results right now
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
