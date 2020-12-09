@@ -7,6 +7,7 @@ function Search({ filter }){
 
     const handleChange = (evt) => {
         setSearchTerm(evt.target.value)
+        debounceSearch()
     }
 
     const handleSubmit = (evt) => {
@@ -22,7 +23,7 @@ function Search({ filter }){
          <form className="Search-bar mt-5 form-container" onSubmit={handleSubmit}>
              <div className="input-group">
                 <input type="text" placeholder="Search..." name="term" id="term" onChange={handleChange} value={searchTerm} className="form-control" aria-describedby="button-addon1"></input>
-                <button className="btn-primary rounded" type="button" id="button-addon1">Search</button>
+                <button className="btn-primary rounded" id="button-addon1">Search</button>
              </div>
          </form>
     )

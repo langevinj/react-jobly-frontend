@@ -5,7 +5,7 @@ import './CardList.css'
 function CardList({ title, items, apply = () => null, unapply = () => null, pageNum }) {
     return items.length ? (
         <div className="CardList">
-            {items[pageNum].map((item, idx) => (<Card key={idx} id={item.id} title={title} item={item} apply={apply} unapply={unapply}/>))}
+            {items[pageNum].map((item, idx) => item ? (<Card key={idx} id={item.id} title={title} item={item} apply={apply} unapply={unapply}/>) : null)}
         </div>
     ) : (
         <p>Sorry, no results found!</p>

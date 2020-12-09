@@ -44,9 +44,8 @@ function JobsList() {
         ))
     }
 
+    //unapply to a job and change the button
     async function unapply(id){
-        console.log("hit")
-        console.log(id)
         let targetJob = jobs.filter(j => (j.id === id))[0]
         let message = await JoblyApi.unapplyToJob(currUser.username, targetJob.id);
         setJobs(j => j.map(job =>

@@ -60,14 +60,14 @@ class JoblyApi {
     }
 
     //get a list of all companies
-    static async getCompanies(search){
-        let res = await this.request("companies", { search });
+    static async getCompanies(searchTerm){
+        let res = await this.request("companies", { searchTerm });
         return res.companies;
     }
     
     //get a list of all jobs
-    static async getJobs(search){
-        let res = await this.request("jobs", { search });
+    static async getJobs(title){
+        let res = await this.request("jobs", { title });
         return res.jobs;
     }
 
