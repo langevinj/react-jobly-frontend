@@ -1,23 +1,23 @@
-import React, { useState }  from 'react'
+import React, { useState, useRef }  from 'react'
 import { debounce } from 'lodash'
 import './Forms.css'
 
 function Search({ filter }){
     const [searchTerm, setSearchTerm] = useState("")
 
+    const debouncedSearch = useRef(debounce(term => filter(term), 1000)).current;
+
     const handleChange = (evt) => {
-        setSearchTerm(evt.target.value)
-        debounceSearch()
-    }
+        const term = evt.target.value.length > 0 ? evt.target.value : ""
+        setSearchTerm(term)
+        debouncedSearch(term)
+    };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
         filter(searchTerm)
         setSearchTerm("")
     }
-
-    //search after 1sec of resting keyboard
-    const debounceSearch = debounce(() => filter(searchTerm), 1000);
 
     return (
          <form className="Search-bar mt-5 form-container" onSubmit={handleSubmit}>
