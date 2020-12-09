@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import JoblyApi from './JoblyApi'
-import './Profile.css'
 import UserContext from './UserContext'
-import './Forms.css'
 import Alert from './Alert'
+
+import './Profile.css'
+import './Forms.css'
 
 const MESSAGE_SHOW_TIME = 3000;
 
+//render the user's profile page
 function Profile() {
     const { currUser, setCurrUser } = useContext(UserContext)
 
@@ -20,6 +22,7 @@ function Profile() {
         saveConfirmed: false
     });
 
+    //check if any type of alert or message should be show to user
     const messageShownRef = useRef(false);
     useEffect(
         function() {
@@ -101,7 +104,6 @@ function Profile() {
                 <button className="btn-primary rounded" onClick={handleSubmit}>Save Changes</button>
             </form>
         </div>
-        // <>{editView ? <EditProfile toggleView={toggleView} u={u} updateUser={updateUser} /> : staticView}</>
     )
 }
 
