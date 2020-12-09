@@ -1,5 +1,6 @@
 import React from 'react'
 
+//return and alert div for each message received
 function Alert({ type, messages }){
     return (
         <>
