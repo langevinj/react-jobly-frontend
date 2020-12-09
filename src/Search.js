@@ -5,6 +5,7 @@ import './Forms.css'
 function Search({ filter }){
     const [searchTerm, setSearchTerm] = useState("")
 
+    //live search after a second of the user not typing
     const debouncedSearch = useRef(debounce(term => filter(term), 1000)).current;
 
     const handleChange = (evt) => {
