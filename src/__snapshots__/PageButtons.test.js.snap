@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when on the last page 1`] = `
+<DocumentFragment>
+  <div
+    class="container buttons"
+  >
+    <button
+      class="btn-primary"
+    >
+      ←
+    </button>
+    <button
+      class="btn-secondary"
+      disabled=""
+    >
+      →
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container buttons"
+  >
+    <button
+      class="btn-secondary disabled"
+      disabled=""
+    >
+      ←
+    </button>
+    <button
+      class="btn-secondary"
+      disabled=""
+    >
+      →
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches the snapshot when on the first page 1`] = `
+<DocumentFragment>
+  <div
+    class="container buttons"
+  >
+    <button
+      class="btn-secondary disabled"
+      disabled=""
+    >
+      ←
+    </button>
+    <button
+      class="btn-primary"
+    >
+      →
+    </button>
+  </div>
+</DocumentFragment>
+`;

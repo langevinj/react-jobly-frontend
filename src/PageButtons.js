@@ -1,7 +1,7 @@
 import React from 'react'
 
 //create the buttons that display on the bottoms of lists
-function PageButtons({setPageNum, numPages, pageNum}){
+function PageButtons({setPageNum = () => null, numPages = 1, pageNum = 0}){
 
     const prevPage = () => {
         setPageNum(pageNum => pageNum - 1)
