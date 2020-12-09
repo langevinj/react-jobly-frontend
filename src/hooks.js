@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+//custom hook for utilizing localStorage, return a value from storage and a function to set value in storage
 function useLocalStorage(key, startingValue = null) {
     const initialValue = localStorage.getItem(key) || startingValue;
 
