@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import Alert from './Alert'
 // import LoginForm from './LoginForm'
 // import SignupForm from './SignupForm'
 import JoblyApi from './JoblyApi'
@@ -62,8 +63,8 @@ function Login({ setToken }) {
                 token = await JoblyApi.signup(data);
                 JoblyApi.token = token;
             }
-        } catch (err) {
-            return setFormData(f => ({ ...f, err }));
+        } catch (errors) {
+            return setFormData(f => ({ ...f, errors }));
         }
 
         //set the token in local storage
@@ -100,6 +101,7 @@ function Login({ setToken }) {
             <label htmlFor="email">Email:</label>
             <input name="email" value={formData.email} id="email" onChange={handleChange} type="text" className="form-control"></input>
         </div>
+        {formData.errors ? <Alert type="danger" messages={formData.errors} /> : null}
         <button className="submitButton btn-primary rounded">Submit</button>
     </form>)
 
@@ -113,6 +115,7 @@ function Login({ setToken }) {
             <label htmlFor="password">Password: </label>
             <input name="password" value={formData.password} id="password" onChange={handleChange} type="password" className="form-control"></input>
         </div>
+        {formData.errors ? <Alert type="danger" messages={formData.errors}/> : null}
         <button className="submitButton btn-primary rounded">Submit</button>
     </form>)
 
