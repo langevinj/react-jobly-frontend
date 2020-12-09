@@ -6,7 +6,6 @@ import Company from './Company.js'
 import JobsList from './JobsList'
 import Login from './Login'
 import Profile from './Profile'
-// import Logout from './Logout'
 import UserContext from './UserContext'
 
 function Routes({setToken}){
@@ -25,8 +24,6 @@ function Routes({setToken}){
             <Route exact path="/companies"><Companies /></Route>
             <Route exact path="/companies/:handle"><Company /></Route>
             <Route exact path="/jobs"><JobsList /></Route>
-            {/* <Route exact path="/login"><Login logIn={logIn} /></Route> */}
-            {/* <Route exact path="/logout"><Logout logOut={logOut} /></Route> */}
             <Route exact path="/profile"><Profile /></Route>
             <Route exact path="/"><Home /></Route>
             <Redirect to="/"></Redirect>
