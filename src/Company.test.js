@@ -3,24 +3,26 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
 import Company from './Company'
+import { UserProvider } from './testUtils'
 
-const toggleJob = () => {return ""}
-
-// const handleParams = jest.spyOn('react-router-dom', "useParams");
-// handleParams.mockImplementation(() => {handle: 'jackson-sons'})
-
-//server must be running for tests to pass
-
-it("renders without crashing", function () {
-    render(<MemoryRouter initialEntries={['companies/jackson-sons']}>
-        <Company toggleJob={toggleJob} />
-    </MemoryRouter>)
+it("renders without crashing", function() {
+    render(
+        <MemoryRouter>
+            <UserProvider>
+                <Company />
+            </UserProvider>
+        </MemoryRouter>
+    );
 });
 
-it("matches the snapshot", function () {
-    const { asFragment } = render(<MemoryRouter initialEntries={['companies/jackson-sons']}>
-        <Company toggleJob={toggleJob} />
-    </MemoryRouter>)
+it("matches snapshot", function() {
+    const { asFragment } = render(
+        <MemoryRouter>
+            <UserProvider>
+                <Company />
+            </UserProvider>
+        </MemoryRouter>
+    );
 
-    expect(asFragment).toMatchSnapshot();
-})
+    expect(asFragment()).toMatchSnapshot();
+});
