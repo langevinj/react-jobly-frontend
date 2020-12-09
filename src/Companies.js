@@ -32,17 +32,17 @@ function Companies(){
         setCompanies(res)
     }
 
-    const list = <div className="CompaniesList">
-        <h4>Finding the right company for you is an important part of the job hunt:</h4>
-        <Search filter={filterCompanies} className="searchbar" />
-        <CardList title={'companies'} items={pages} pageNum={pageNum} className="companylist"/>
+    const list = <>
+        <CardList title={'companies'} items={pages} pageNum={pageNum} className="companylist" />
         <PageButtons setPageNum={setPageNum} numPages={pages.length} pageNum={pageNum} />
-    </div>  
+        </>
 
     return (
-        <>
+        <div className="CompaniesList">
+            <h4>Finding the right company for you is an important part of the job hunt:</h4>
+            <Search filter={filterCompanies} className="searchbar" />
             {!pages[0] ? <div className="mt-3"><p>....no results right now</p></div> : list}
-        </>
+        </div>  
     )
 }
 
