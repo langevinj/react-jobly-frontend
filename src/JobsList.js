@@ -31,7 +31,7 @@ function JobsList() {
     const filterJobs = async (searchTerm) => {
         let res = await JoblyApi.getJobs(searchTerm);
         //if the searchterm isn't blank then filter by the term
-        setJobs(res);
+        setJobs(res.map(job => currUser.applications.includes(job.id) ? {...job, state: "applied"} : {...job}));
     }
 
     //apply to job and change the message for it in the job list
@@ -45,13 +45,13 @@ function JobsList() {
     }
 
     async function unapply(id){
+        console.log("hit")
+        console.log(id)
         let targetJob = jobs.filter(j => (j.id === id))[0]
-        console.log(targetJob)
-        let jobId = targetJob.id
-        let message = await JoblyApi.unapplyToJob(currUser.username, jobId);
+        let message = await JoblyApi.unapplyToJob(currUser.username, targetJob.id);
         setJobs(j => j.map(job =>
-            job.id === jobId ? { ...job, state: ""} : job
-        ))
+            job.id === targetJob.id ? { ...job, state: null} : job
+        ));
     }
 
     const list = 
