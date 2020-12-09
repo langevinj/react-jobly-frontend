@@ -1,11 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import CompanyCard from './CompanyCard'
 import JobCard from './JobCard'
-import { Link } from 'react-router-dom'
 import './Card.css'
 
 function Card({ title, item, apply = () => null, unapply = () => null, id}){
-
     if(title === 'companies'){
         return (
             <Link to={`/companies/${item.handle}`}>
@@ -19,7 +18,6 @@ function Card({ title, item, apply = () => null, unapply = () => null, id}){
             </div>
         )
     }
-    
 }
 
 export default Card;
