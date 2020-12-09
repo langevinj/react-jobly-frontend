@@ -35,9 +35,11 @@ function JobsList() {
     }
 
     //apply to job and change the message for it in the job list
-    async function apply(idx){
-        let jobId = jobs[idx].id
+    async function apply(id){
+        let targetJob = jobs.filter(job => (job.id === id))[0]
+        let jobId = targetJob.id
         let message = await JoblyApi.applyToJob(currUser.username, jobId);
+        console.log(message)
         setJobs(j => j.map(job=>
             job.id === jobId ? { ...job, state: message} : job
         ))
