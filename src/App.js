@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import useLocalStorage from './hooks'
 import { decode } from "jsonwebtoken"
+import useLocalStorage from './hooks'
+
 import './App.css';
 import Nav from './Nav'
 import Routes from './Routes'
@@ -16,6 +17,7 @@ function App() {
 
   const [token, setToken] = useLocalStorage(TOKEN_KEY)
 
+  //when the app renders, or when the token is set, update the users information and set the token for API calls
   useEffect(() => {
     async function getCurrentUser() {
       try{
@@ -32,11 +34,13 @@ function App() {
     getCurrentUser();
   }, [token]);
 
+  //function to log a user out and reset localStorage
   const logOut = () => {
     setCurrUser(null);
     setToken(null);
   }
 
+  //if the users data is not loaded, present a loading screen
   if(!userLoaded) {
     return <div><h2>Loading...</h2></div>
   }
@@ -50,53 +54,7 @@ function App() {
           </div>
         </UserContext.Provider>
       </BrowserRouter>
-  );
-
-  // const [jobAdded, setJobAdded] = useState(false)
-  // setUser(JSON.parse(localStorage.getItem("user")));
-  
-  // check local storage to see if the user is logged in
-  // useEffect(() => {
-  //   async function loadUser(){
-  //     if(user){
-  //       try{
-  //         let res = await JoblyApi.getUserInfo(user.user.username)
-  //         setUser(res)
-  //       } catch (err) {
-  //         console.error(err)
-  //       }
-  //     } else {
-  //       setUser(null)
-  //       setToken(null)
-  //     }
-  //   }
-  //   loadUser()
-  // },[jobAdded, isLoggedIn])
-
-  // useEffect(() => {
-  //   async function loadUser(){
-  //     if(token){
-  //       let res = await JoblyApi.getUserInfo(user.user.username)
-  //       setUser(res)
-  //     }
-  // } loadUser()
-  // }, [jobAdded])
-
- 
-
-  // const logIn = (token, username) => {
-  //   setUser({user: {username: username}});
-  //   setToken(token)
-  //   setIsLoggedIn(true)
-  // }
-
-  // const toggleJob = () => {
-  //   setJobAdded(!jobAdded)
-  // }
-
-  
-
-  
+  );  
 }
 
 export default App;
